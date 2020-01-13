@@ -3,7 +3,7 @@
     <div class="columns is-multiline">
       <div class="column is-12 is-marginless">
           <b-icon
-            class="is-overlay"
+            class="is-overlay is-checked"
             v-show="amiActive"
             size="is-small" type="is-success" pack="fas" icon="check-circle">
           </b-icon>
@@ -60,8 +60,10 @@ export default {
 <style scoped>
 .tile {
   padding-bottom: 10px;
+  min-height: 132px;
 }
-.product-check {
-  margin: 10px;
+.is-checked {
+  padding-top: 10px;
+  padding-left: 20px;
 }
 </style>
