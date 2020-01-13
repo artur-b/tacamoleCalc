@@ -2,9 +2,9 @@
   "level": "filling",
   "pick": "many",
   "items": [
-    {"id": 21, "name": "Ryż biały", "type": "protein", "calories": 200},
-    {"id": 22, "name": "Ryż brązowy", "type": "protein", "calories": 180},
-    {"id": 23, "name": "Fasola Pinto", "type": "protein", "calories": 120},
-    {"id": 24, "name": "Fasola czarna", "type": "protein", "calories": 120}
+    {"id": 21, "name": "Ryż biały", "calories": 200},
+    {"id": 22, "name": "Ryż brązowy", "calories": 180},
+    {"id": 23, "name": "Fasola Pinto", "calories": 120},
+    {"id": 24, "name": "Fasola czarna", "calories": 120}
   ]
 }

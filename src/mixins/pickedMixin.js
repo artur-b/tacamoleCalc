@@ -8,7 +8,7 @@ export default {
   },
   methods: {
     addBase: function(product) {
-      this.pickedList = [];      
+      this.pickedList = [];
       this.pickedList["base"] = [product];
       this.caloriesSummary = this.getCaloriesSummary();
     },
@@ -17,23 +17,30 @@ export default {
       this.pickedList = [];
       this.caloriesSummary = 0;
     },
-    addProduct: function(product, type, exclusive) {
-      console.log("add " + product.name + ": " + type + ", " + exclusive);
+    toggleProduct: function(product, type, exclusive) {
       if (exclusive) {
-        this.pickedList[type] = [product];        
+        this.pickedList[type] = [product];
       } else {
-        if (this.pickedList[type]) {
-          this.pickedList[type].push(product);
+        if (this.pickedList[type] == undefined) {
+            this.pickedList[type] = [product];
         } else {
-          this.pickedList[type] = [product];
+          if (this.pickedList[type].includes(product)) {
+            //delete product
+            var idx = this.pickedList[type].indexOf(product);
+            if (idx >= 0) {
+              this.$delete(this.pickedList[type], idx);
+            }
+          } else {
+            this.pickedList[type].push(product);
+          }
         }
       }
       this.caloriesSummary = this.getCaloriesSummary();
     },
-    getReadableList: function() {      
-      var readable = [];      
-      for (var key in this.pickedList) {             
-        var itemList = this.pickedList[key];        
+    getReadableList: function() {
+      var readable = [];
+      for (var key in this.pickedList) {
+        var itemList = this.pickedList[key];
         var el = "";
         if (key == "base") {
           var firstItem = itemList[0];
@@ -43,19 +50,19 @@ export default {
           }
           el += ": " + firstItem.calories + "kcal";
           readable.push(el);
-        } else {          
+        } else {
           for (var i in itemList) {
             el = itemList[i].name;
-            el += ": " + itemList[i].calories + "kcal";            
+            el += ": " + itemList[i].calories + "kcal";
             readable.push(el);
           }
         }
-      }      
+      }
       return readable;
     },
     getCaloriesSummary: function() {
       var nutrition = 0;
-      for (var key in this.pickedList) {    
+      for (var key in this.pickedList) {
         var itemList = this.pickedList[key];
         for (var i in itemList) {
           var cal = itemList[i].calories;

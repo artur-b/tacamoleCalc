@@ -1,9 +1,9 @@
 <template>
-  <div class="tile is-2 button" @click="markMe(product.type)">
+  <div class="tile is-2 button" @click="addMe()" v-show="isVisible()">
     <div class="columns is-multiline">
-      <div class="column is-12 is-marginless">        
-          <b-icon 
-            class="is-overlay" 
+      <div class="column is-12 is-marginless">
+          <b-icon
+            class="is-overlay"
             v-show="amiActive"
             size="is-small" type="is-success" pack="fas" icon="check-circle">
           </b-icon>
@@ -12,7 +12,7 @@
         </figure>
       </div>
       <div class="column is-12 is-paddingless">
-        <p class="heading" :class="isPicked()">{{product.name}}</p>
+        <p class="heading" v-bind:class="{'has-text-info': amiActive}">{{product.name}}</p>
       </div>
     </div>
   </div>
@@ -31,21 +31,26 @@ export default {
     return {
       isMarked: false
     }
-  },  
+  },
   methods: {
-    markMe: function() {
+    addMe: function() {
       if(this.type == 'base') {
         this.$parent.addBase(this.product);
-      } else {        
-        this.$parent.addProduct(this.product, this.type, (this.pick == "one") ? true : false);
+      } else {
+        this.$parent.toggleProduct(this.product, this.type, (this.pick == "one") ? true : false);
       }
-      this.isMarked = !this.isMarked;
+      if (this.pick == "many") {
+        this.isMarked = !this.isMarked;
+      } else {
+        this.isMarked = true;
+      }
       this.$emit('changedId');
     },
-    isPicked: function() {
-      if (this.amiActive) {
-        return 'has-text-info';
+    isVisible: function() {
+      if (this.type == "base" && this.$parent.activeBase > 0) {
+        return this.amiActive;
       }
+      return true;
     }
   }
 }

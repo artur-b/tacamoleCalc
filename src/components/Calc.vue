@@ -44,7 +44,7 @@
       </div>
     </section> <!-- level1 //-->
 
-    <section class="section" v-bind:class="setHidden()" id="level1">
+    <section class="section" v-bind:class="setHidden()" id="level2">
       <div class="container">
         <div class="tile is-ancestor">
           <Product
@@ -60,7 +60,21 @@
       </div>
     </section> <!-- level2 //-->
 
-    <!-- level3 //-->
+    <section class="section" v-bind:class="setHidden()" id="level3">
+      <div class="container">
+        <div class="tile is-ancestor">
+          <Product
+            v-for="productItem in addonsList.items"
+            v-bind:key="productItem.id"
+            :product="productItem"
+            :type="addonsList.level"
+            :pick="addonsList.pick"
+            :amiActive="activeAddons.includes(productItem.id)"
+            @changedId="updateActive(addonsList.level)"
+            />
+        </div>
+      </div>
+    </section><!-- level3 //-->
 
     </div> <!-- column is-10 //-->
     <div class="column is-2">
@@ -77,6 +91,7 @@ import pickedMixin from '@/mixins/pickedMixin'
 import baseJson from '@/assets/base.json'
 import proteinJson from '@/assets/protein.json'
 import fillingJson from '@/assets/filling.json'
+import addonsJson from '@/assets/addons.json'
 
 export default {
   name: 'Calc',
@@ -85,10 +100,12 @@ export default {
       activeBase: 0,
       activeProtein: 0,
       activeFilling: [],
-      levelShown: 0,   
+      activeAddons: [],
+      levelShown: 0,
       baseList: baseJson,
       proteinList: proteinJson,
-      fillingList: fillingJson
+      fillingList: fillingJson,
+      addonsList: addonsJson
     }
   },
   components: {
@@ -106,6 +123,7 @@ export default {
       this.activeBase = 0;
       this.activeProtein = 0;
       this.activeFilling = [];
+      this.activeAddons = [];
       this.levelShown = 0;
       this.clearBase();
     },
@@ -113,26 +131,27 @@ export default {
       console.log("DEBUG:");
       console.log(this.pickedList);
     },
-    updateActive: function(type) {      
+    updateActive: function(type) {
       if (type == "base") {
         if(this.pickedList["base"] && this.pickedList["base"].length > 0) {
-          this.activeBase = this.pickedList["base"][0].id || 0;
-        }      
+          this.activeBase = this.pickedList["base"][0].id;
+        }
       } else if (type == "protein") {
         if(this.pickedList["protein"] && this.pickedList["protein"].length > 0) {
-          this.activeProtein = this.pickedList["protein"][0].id;        
+          this.activeProtein = this.pickedList["protein"][0].id;
         }
-      } 
-      /*
-      else if (type == "filling") {
-        if(this.pickedList["filling"] && this.pickedList["filling"].length > 0) {
-          this.activeProtein = this.pickedList["fillinf"][0].id;        
+      } else if (type == "filling") {
+        this.activeFilling = [];
+        for (var pf in this.pickedList["filling"]) {
+          this.activeFilling.push(this.pickedList["filling"][pf].id);
+        }
+      } else if (type == "addons") {
+        this.activeAddons = [];
+        for (var pa in this.pickedList["addons"]) {
+          this.activeAddons.push(this.pickedList["addons"][pa].id);
         }
       }
-      */
-      console.log("aB: " + this.activeBase + ", aP: " + this.activeProtein);
-      console.log("aF: " + this.activeFilling);
-    }    
+    }
   }
 }
 </script>
