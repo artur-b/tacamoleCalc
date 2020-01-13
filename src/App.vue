@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
+  <section id="app">
     <div class="container">
       <figure class="image container is-128x128">
         <img class="is-rounded" src="@/assets/top-logo.png"/>
       </figure>
       <Calc />
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

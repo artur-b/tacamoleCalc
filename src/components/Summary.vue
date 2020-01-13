@@ -7,28 +7,25 @@
         <h1 class="subtitle">Kalorie</h1>
       </div>
     </div>
-  
     <div class="level">
-      <b-message type="is-info">
+      <div class="level-item notification is-info">
         <div class="subtitle">{{ caloriesSummary }} kcal</div>
-      </b-message>
+      </div>
     </div>
-  
     <div class="level">
       <div class="level-item level-left">
         <b-icon pack="fas" icon="tasks"></b-icon>
         <h1 class="subtitle">Wybrano</h1>
       </div>
     </div>
-  
     <div class="level">
-      <b-message type="is-info">
+      <div class="level-item notification has-text-left">
         <ul>
           <li v-for="picked in pickedList" v-bind:key="picked">
             {{picked}}
           </li>
-        </ul>        
-      </b-message>
+        </ul>
+      </div>
     </div>
 
   </div>

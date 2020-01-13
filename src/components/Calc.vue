@@ -1,18 +1,23 @@
 <template>
-
+  <div class="box">
     <div class="columns">
-    <div class="column is-10">
+      <div class="column is-9">
 
-    <section class="section" id="level0">
       <div class="container">
         <div class="level">
           <div class="level-item level-left">
             <b-icon pack="far" icon="hand-point-right"></b-icon>
             <h1 class="subtitle">Wybierz danie</h1>
-            <b-button class="is-small" v-bind:class="setHidden()" @click="resetList()">Reset</b-button>
+            <b-button class="is-small is-info is-outlined" icon-left="" v-bind:class="setHidden()" @click="resetList()">
+              <b-icon pack="fas" size="is-small" icon="redo"></b-icon>
+              <span>Reset</span>
+            </b-button>
+<!--
             <b-button class="is-small" @click="debugMe()">Debug</b-button>
+            //-->
           </div>
         </div>
+
         <div class="tile is-ancestor">
           <Product
             v-for="productItem in baseList.items"
@@ -25,11 +30,9 @@
             @changedId="updateActive(baseList.level)"
             />
         </div>
-      </div>
-    </section><!-- level0 //-->
+      </div><!-- level0 //-->
 
-    <section class="section" v-bind:class="setHidden()" id="level1">
-      <div class="container">
+      <div class="container" v-bind:class="setHidden()">
         <div class="tile is-ancestor">
           <Product
             v-for="productItem in proteinList.items"
@@ -41,11 +44,9 @@
             @changedId="updateActive(proteinList.level)"
             />
         </div>
-      </div>
-    </section> <!-- level1 //-->
+      </div> <!-- level1 //-->
 
-    <section class="section" v-bind:class="setHidden()" id="level2">
-      <div class="container">
+      <div class="container" v-bind:class="setHidden()">
         <div class="tile is-ancestor">
           <Product
             v-for="productItem in fillingList.items"
@@ -57,11 +58,9 @@
             @changedId="updateActive(fillingList.level)"
             />
         </div>
-      </div>
-    </section> <!-- level2 //-->
+      </div> <!-- level2 //-->
 
-    <section class="section" v-bind:class="setHidden()" id="level3">
-      <div class="container">
+      <div class="container" v-bind:class="setHidden()">
         <div class="tile is-ancestor">
           <Product
             v-for="productItem in addonsList.items"
@@ -73,15 +72,14 @@
             @changedId="updateActive(addonsList.level)"
             />
         </div>
-      </div>
-    </section><!-- level3 //-->
+      </div> <!-- level3 //-->
 
     </div> <!-- column is-10 //-->
-    <div class="column is-2">
+    <div class="column is-3">
       <Summary :caloriesSummary="caloriesSummary" :pickedList="getReadableList()"/>
     </div>
     </div>
-
+  </div>
 </template>
 
 <script>
@@ -168,7 +166,10 @@ h1.subtitle {
 .tile {
   margin: 5px;
 }
-.section {
-  padding: 10px 5px;
+.box {
+  margin-top: -20px;
+}
+.is-ancestor {
+  padding-bottom: 10px;
 }
 </style>
