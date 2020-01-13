@@ -1,5 +1,6 @@
 {
   "level": "protein",
+  "pick": "one",
   "items": [
     {"id": 11, "name": "Wołowina szarpana", "type": "protein", "calories": 150},
     {"id": 12, "name": "Wieprzowina szarpana", "type": "protein", "calories": 200},

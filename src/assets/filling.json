@@ -1,5 +1,6 @@
 {
   "level": "filling",
+  "pick": "many",
   "items": [
     {"id": 21, "name": "Ryż biały", "type": "protein", "calories": 200},
     {"id": 22, "name": "Ryż brązowy", "type": "protein", "calories": 180},

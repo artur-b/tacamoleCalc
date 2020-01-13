@@ -1,13 +1,18 @@
 <template>
-  <div class="tile is-2 button" v-bind:class="getState()" @click="markMe()">
+  <div class="tile is-2 button" @click="markMe(product.type)">
     <div class="columns is-multiline">
-      <div class="column is-12 is-marginless">
+      <div class="column is-12 is-marginless">        
+          <b-icon 
+            class="is-overlay" 
+            v-show="amiActive"
+            size="is-small" type="is-success" pack="fas" icon="check-circle">
+          </b-icon>
         <figure class="image container is-96x96">
           <img class="is-rounded" src="https://bulma.io/images/placeholders/96x96.png"/>
         </figure>
       </div>
       <div class="column is-12 is-paddingless">
-        <p class="heading">{{product.name}}</p>
+        <p class="heading" :class="isPicked()">{{product.name}}</p>
       </div>
     </div>
   </div>
@@ -18,40 +23,27 @@ export default {
   name: 'Product',
   props: {
     product: Object,
-    type: String
+    type: String,
+    pick: String,
+    amiActive: Boolean
   },
   data: function() {
     return {
       isMarked: false
     }
-  },
+  },  
   methods: {
     markMe: function() {
       if(this.type == 'base') {
-        this.$parent.activeBase = this.product.id;
-        this.$parent.activeProtein = 0;
-        // reset lower levels, disable other base products?
-        this.$parent.caloriesSummary = this.product.calories;
-      } else {
-        this.$parent.activeProtein = this.product.id;
-        // add only to base calories ;)
-        this.$parent.caloriesSummary += this.product.calories;
+        this.$parent.addBase(this.product);
+      } else {        
+        this.$parent.addProduct(this.product, this.type, (this.pick == "one") ? true : false);
       }
+      this.isMarked = !this.isMarked;
     },
-    getState: function() {
-      if(this.type == 'base') {
-        return {
-          'is-outlined': (this.$parent.activeBase == this.product.id) ? false : true,
-          'is-info': (this.$parent.activeBase == this.product.id) ? true :false,
-          'is-light': (this.$parent.activeBase == this.product.id) ? true :false
-        }
-      }
-      if(this.type == 'protein') {
-        return {
-          'is-outlined': (this.$parent.activeProtein == this.product.id) ? false : true,
-          'is-success': (this.$parent.activeProtein == this.product.id) ? true :false,
-          'is-light': (this.$parent.activeProtein == this.product.id) ? true :false
-        }
+    isPicked: function() {
+      if (this.amiActive) {
+        return 'has-text-info';
       }
     }
   }
@@ -62,5 +54,8 @@ export default {
 <style scoped>
 .tile {
   padding-bottom: 10px;
+}
+.product-check {
+  margin: 10px;
 }
 </style>

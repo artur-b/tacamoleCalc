@@ -1,9 +1,10 @@
 {
   "level": "base",
+  "pick": "one",
   "items": [
-    {"id": 1, "name": "Burrito", "type": "tortilla", "calories": 250},
-    {"id": 2, "name": "Miska", "type": "basic", "calories": 0},
-    {"id": 3, "name": "Tacos", "type": "basic", "calories": 200},
-    {"id": 4, "name": "Sałatka", "type": "salad", "calories": 20}
+    {"id": 1, "name": "Burrito", "calories": 250, "includes": "tortilla"},
+    {"id": 2, "name": "Miska", "calories": 0, "includes": ""},
+    {"id": 3, "name": "Tacos", "calories": 200, "includes": "taco"},
+    {"id": 4, "name": "Sałatka", "calories": 20, "includes": "sałatka"}
   ]
 }

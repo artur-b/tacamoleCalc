@@ -1,5 +1,6 @@
 {
   "level": "3",
+  "pick": "many",
   "items": [
     {"id": 31, "name": "Salsa", "type": "protein", "calories": 30},
     {"id": 32, "name": "Guacamole", "type": "protein", "calories": 200},
