@@ -40,6 +40,7 @@ export default {
         this.$parent.addProduct(this.product, this.type, (this.pick == "one") ? true : false);
       }
       this.isMarked = !this.isMarked;
+      this.$emit('changedId');
     },
     isPicked: function() {
       if (this.amiActive) {

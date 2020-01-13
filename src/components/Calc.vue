@@ -22,6 +22,7 @@
             :pick="baseList.pick"
             :amiActive="(productItem.id == activeBase) ? true : false"
             :ref="'product' + productItem.id"
+            @changedId="updateActive(baseList.level)"
             />
         </div>
       </div>
@@ -37,6 +38,7 @@
             :type="proteinList.level"
             :pick="proteinList.pick"
             :amiActive="(productItem.id == activeProtein) ? true : false"
+            @changedId="updateActive(proteinList.level)"
             />
         </div>
       </div>
@@ -51,6 +53,8 @@
             :product="productItem"
             :type="fillingList.level"
             :pick="fillingList.pick"
+            :amiActive="activeFilling.includes(productItem.id)"
+            @changedId="updateActive(fillingList.level)"
             />
         </div>
       </div>
@@ -80,7 +84,8 @@ export default {
     return {
       activeBase: 0,
       activeProtein: 0,
-      activeFilling: [],      
+      activeFilling: [],
+      levelShown: 0,   
       baseList: baseJson,
       proteinList: proteinJson,
       fillingList: fillingJson
@@ -101,24 +106,33 @@ export default {
       this.activeBase = 0;
       this.activeProtein = 0;
       this.activeFilling = [];
+      this.levelShown = 0;
       this.clearBase();
     },
     debugMe: function() {
+      console.log("DEBUG:");
       console.log(this.pickedList);
-    }
-    
-  },
-  watch: {
-    pickedList: function() {
-      console.log("picked list changed!");
-      if(this.pickedList["base"] && this.pickedList["base"].length > 0) {
-        this.activeBase = this.pickedList["base"][0].id || 0;
+    },
+    updateActive: function(type) {      
+      if (type == "base") {
+        if(this.pickedList["base"] && this.pickedList["base"].length > 0) {
+          this.activeBase = this.pickedList["base"][0].id || 0;
+        }      
+      } else if (type == "protein") {
+        if(this.pickedList["protein"] && this.pickedList["protein"].length > 0) {
+          this.activeProtein = this.pickedList["protein"][0].id;        
+        }
+      } 
+      /*
+      else if (type == "filling") {
+        if(this.pickedList["filling"] && this.pickedList["filling"].length > 0) {
+          this.activeProtein = this.pickedList["fillinf"][0].id;        
+        }
       }
-      if(this.pickedList["protein"] && this.pickedList["protein"].length > 0) {
-        this.activeProtein = this.pickedList["protein"][0].id;        
-      }
+      */
       console.log("aB: " + this.activeBase + ", aP: " + this.activeProtein);
-    }
+      console.log("aF: " + this.activeFilling);
+    }    
   }
 }
 </script>

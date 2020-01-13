@@ -20,10 +20,13 @@ export default {
     addProduct: function(product, type, exclusive) {
       console.log("add " + product.name + ": " + type + ", " + exclusive);
       if (exclusive) {
-        this.pickedList[type] = [product];
-        console.log(this.pickedList);
+        this.pickedList[type] = [product];        
       } else {
-        this.pickedList[type].push(product);
+        if (this.pickedList[type]) {
+          this.pickedList[type].push(product);
+        } else {
+          this.pickedList[type] = [product];
+        }
       }
       this.caloriesSummary = this.getCaloriesSummary();
     },
