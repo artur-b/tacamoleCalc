@@ -1,0 +1,9 @@
+{
+  "level": "base",
+  "items": [
+    {"id": 1, "name": "Burrito", "type": "tortilla", "calories": 250},
+    {"id": 2, "name": "Miska", "type": "basic", "calories": 0},
+    {"id": 3, "name": "Tacos", "type": "basic", "calories": 200},
+    {"id": 4, "name": "Sałatka", "type": "salad", "calories": 20}
+  ]
+}

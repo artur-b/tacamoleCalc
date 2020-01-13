@@ -1,0 +1,10 @@
+{
+  "level": "3",
+  "items": [
+    {"id": 31, "name": "Salsa", "type": "protein", "calories": 30},
+    {"id": 32, "name": "Guacamole", "type": "protein", "calories": 200},
+    {"id": 33, "name": "Fajitas", "type": "protein", "calories": 20},
+    {"id": 34, "name": "Ser", "type": "protein", "calories": 100},
+    {"id": 35, "name": "Śmietana", "type": "protein", "calories": 100}
+  ]
+}

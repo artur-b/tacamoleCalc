@@ -1,0 +1,9 @@
+{
+  "level": "protein",
+  "items": [
+    {"id": 11, "name": "Wołowina szarpana", "type": "protein", "calories": 150},
+    {"id": 12, "name": "Wieprzowina szarpana", "type": "protein", "calories": 200},
+    {"id": 13, "name": "Kurczak szarpany", "type": "protein", "calories": 120},
+    {"id": 14, "name": "Kurczak grillowany", "type": "protein", "calories": 100}
+  ]
+}
